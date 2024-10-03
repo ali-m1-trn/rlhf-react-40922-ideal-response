@@ -126,7 +126,9 @@ function PersonCard({ person, personIndex, setSelectedPerson }) {
           <div className="flex flex-col md:flex-row justify-between">
             {person.name}
             <p
-              className={`mt-4 md:mt-0 text-lg ${owes ? "text-green-500" : "text-red-500"}`}
+              className={`mt-4 md:mt-0 text-lg ${
+                owes ? "text-green-500" : "text-red-500"
+              }`}
             >
               {owes ? "Owed: " : "Owes: "}${Math.abs(balance).toFixed(2)}
             </p>
@@ -275,10 +277,12 @@ function DebtsDialog({ people }) {
         <DialogTitle>Remaining Debts</DialogTitle>
       </DialogHeader>
       <ScrollArea className="h-[300px] w-full rounded-md border p-4">
-        {debts === null ? (
+        {debts === null || debts.length === 0 ? (
           <Alert variant="destructive">
             <AlertDescription>
-              Total payments and total item values do not match!
+              {debts === null
+                ? "Total payments and total item values do not match!"
+                : "There are no debts to show."}
             </AlertDescription>
           </Alert>
         ) : (
